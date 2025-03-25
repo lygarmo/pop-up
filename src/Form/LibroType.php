@@ -33,7 +33,6 @@ class LibroType extends AbstractType
                 'choice_label' => 'nombre', // Definimos qué atributo de la entidad mostrar en el select (por ejemplo, 'nombre')
                 'placeholder' => 'Selecciona un autor', // Mensaje que aparece en el desplegable
                 'required' => true,  // Hacemos el campo obligatorio
-                'disabled' => true,  // Deshabilitado inicialmente
             ])
             ->add('a_publicacion', IntegerType::class, [
                 'label' => 'Año de publicación',
