@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Libros</title>
+    <!-- Enlace al CSS de DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+    <!-- Enlace a Font Awesome (para los iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        a{
+            color:black;
+        }
+
+        tr th{
+             background-color: steelblue;
+        }
+
+        tr td{
+            background-color: rgb(205, 215, 222);
+        }
+
+        body{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Lista de Libros</h1>
+
+    <table border="1" id="tablaLibros">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Año de publicacion</th>
+                <th>Editorial</th>
+                <th>Eliminar</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+                <tr>
+                    <td>{{ libro.id }}</td>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.autor.nombre }}</td>
+                    <td>{{ libro.apublicacion }}</td>
+                    <td>{{ libro.editorial.nombre }}</td>
+                    <td>
+                        <a href="{{ path('app_libro_eliminar', {'id':libro.id}) }}"> 
+                            <i class="fas fa-times" style="color: red;"></i> <!-- Cruz roja -->
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_libro_editar', {'id':libro.id}) }}">
+                            <i class="fas fa-edit" style="color: grey;"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{{ path('app_libro_nuevo') }}"><i class="fas fa-plus" style="color: green;"></i>Insertar nuevo libro</a></p>
+
+
+    <!-- Enlace a jQuery (requerido para DataTables) -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
+    <!-- Enlace a JavaScript de DataTables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+    <!-- Inicialización de DataTables -->
+    <script>
+        $(document).ready(function() {
+            $('#tablaLibros').DataTable();  // Inicializa DataTables en la tabla con id "tablaLibros"
+        });
+    </script>
+</body>
+</html>
